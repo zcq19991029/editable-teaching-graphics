@@ -1,0 +1,7 @@
+interface:
+  display_name: "1 教学图规划"
+  short_description: "分析教学PPT，制定图数量、标题与完整提示词，确认后交接生图阶段"
+  default_prompt: "请使用 $teach-1-plan 分析我提供的 PPT，先输出拆解规划和每图完整版提示词，等待我确认。"
+policy:
+  allow_implicit_invocation: true
+

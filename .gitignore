@@ -1,0 +1,17 @@
+# 教学材料与运行产物不属于技能发布包
+.env
+.env.*
+!.env.example
+node_modules/
+__pycache__/
+*.pyc
+tmp/
+data/
+*.pptx
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.zip
+.DS_Store
+Thumbs.db

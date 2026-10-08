@@ -1,0 +1,7 @@
+interface:
+  display_name: "2 教学图生成"
+  short_description: "按确认提示词生成课堂教学主体图，按标题保存并准备独立复刻交接包"
+  default_prompt: "请使用 $teach-2-gen 按已确认规划生成教学图，保存图片、复现清单和复现交接。"
+policy:
+  allow_implicit_invocation: true
+
