@@ -3,7 +3,7 @@ const fs=require('fs'),path=require('path');
 const source=process.argv[2];
 if(!source)throw Error('Usage: node scripts/sync-skills.cjs <source-skills-directory>');
 const from=fs.realpathSync(source),root=path.resolve(__dirname,'..');
-const names=['teach-1-plan','teach-2-gen','teach-3-ppt'];
+const names=['teach-1-plan','teach-2-gen','teach-3-embed','teach-4-ppt'];
 const files=names.flatMap(n=>[`${n}/SKILL.md`,`${n}/agents/openai.yaml`]);
 files.push('teach-2-gen/references/image-spec.md');
 files.push('teach-1-plan/references/input-ocr.md');

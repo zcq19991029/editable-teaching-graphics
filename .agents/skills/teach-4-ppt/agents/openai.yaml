@@ -1,7 +1,7 @@
 interface:
-  display_name: "3 教学图复刻"
+  display_name: "4 教学图复刻"
   short_description: "在独立聊天按原图和复现清单重建可编辑PPT，交付预览及验证报告"
-  default_prompt: "请使用 $teach-3-ppt 按原图和复现清单忠实重建可编辑 PPT，不重新规划教学内容。"
+  default_prompt: "请使用 $teach-4-ppt 按原图和复现清单忠实重建可编辑 PPT，不重新规划教学内容。"
 policy:
   allow_implicit_invocation: true
 
