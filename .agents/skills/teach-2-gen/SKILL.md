@@ -81,3 +81,8 @@ description: "在明确的教学图流程中支持口令“执行第二步”或
 新任务文件统一用“P01-确认标题.png”“P01-确认标题-提示词.md”“P01-确认标题-复现清单.md”，P01指确认后的输出页序号；必要时扩为三位补零。主体图不画总标题或页码。索引绑定前缀、标题与来源页，视频页没有空提示词文件或占位PNG。页序调整同步所有关联路径并标旧PPT待更新，不能按目录排序猜顺序。
 第三阶段根据完整页序合成：图页放图，视频页只留下模板空主体区域及页号，不插图、不插视频、不自动写内容标题；记录视频未迁入，待用户自行补入。第四阶段只派发有原图的图页给公共复刻技能，完成后按完整页序组装并插入空白视频占位页，复核页数与页号；不能将空占位页送去OCR或图像重建。仅逐图分别输出时不制造空PPT文件，视频页位置保留在总索引与交接。
 旧任务已有无编号文件不自动批量改名；沿用索引中已确定路径，用户明确要求迁移时才统一改名并更新引用。
+
+## Windows execution reliability and problem solving
+When a Windows task contains Chinese paths, avoid long nested PowerShell commands with variables inside JSON or double quoted `-Command` strings. Prefer a short ASCII Python launcher, locate user files with `Path.glob` or `Path.rglob`, and read or write task files with UTF-8 and LF newlines. Verify the source path before batch writes and verify the target directory, expected file count, filenames, and UTF-8 decoding after writes. Never modify `.codex` configuration files with PowerShell content cmdlets.
+
+When a problem occurs, first attempt a reasonable local diagnosis and repair, then rerun the relevant check. Inspect actual error output, paths, encodings, process state, or generated files before declaring a blocker. Report a blocker only after the repair attempt and verification fail; never report an unverified file or result as complete.

@@ -50,6 +50,11 @@ description: "在明确的教学图流程中支持口令“执行第一步”或
 使用已确认标题作为唯一业务名称，索引逐项对应编号、原标题页、标题、图片路径、提示词路径和复现清单路径。生成前核对提示词主题与索引标题一致；保存后核对图片、提示词和清单同名对应，无重复或串图。提示词修订不改变标题或编号，用户明确改名时同步所有关联路径；待生成路径须标明预定，不能当成已有产物。
 
 ## 精简交付约定
+
+## Windows 路径与命令可靠性
+处理含中文路径的 Windows 教学 PPT 时，不要把长 PowerShell 命令、变量和 JSON 嵌套在双引号 `-Command` 中。优先使用短的 ASCII Python 启动脚本，用 `Path.glob` 或 `Path.rglob` 定位用户提供的 PPT，再用 `encoding="utf-8", newline="\n"` 读写任务文件。不得用 PowerShell 的 `Get-Content` 或 `Set-Content` 修改 `.codex` 配置文件。
+
+批量写入前先验证源文件存在并输出解析后的绝对路径；每次写入后验证目标目录、预期文件数量、文件名和 UTF-8 解码。若临时脚本出现乱码，或 PowerShell 报出 `-f )` 一类缺少表达式错误，应停止并修复命令，不得继续执行。只有这些检查通过后才能报告文件已保存。
 一套任务只维护一份“提示词索引.md”，统一记录确认顺序、标题、来源页、实际尺寸、最终图片路径、当前提示词路径及哈希、复现清单路径。随着阶段推进更新该索引，不另建“图片与提示词对应清单”等重复总表。
 逐图复现清单保留准确内容、关系及最终图实际输出补充；复现交接只引用总索引并补充独立素材、模板、输出方式和已知问题，不重复整张映射表。生成、修订及嵌图检查结论集中写“生成记录.md”，不为每次检查另建说明。
 模板合成默认交付PPTX，用户直接打开查看。仍须进行实际渲染检查；检查用预览、模板截图、操作JSON及中间文件放本任务临时目录，成功并记录结论后清理本次临时产物，失败时保留必要诊断证据。用户明确要求预览或可复跑执行文件时才交付。不得清理原始输入、参考素材、最终图片、当前提示词、复现清单及已有PPT。
@@ -66,3 +71,8 @@ description: "在明确的教学图流程中支持口令“执行第一步”或
 新任务文件统一用“P01-确认标题.png”“P01-确认标题-提示词.md”“P01-确认标题-复现清单.md”，P01指确认后的输出页序号；必要时扩为三位补零。主体图不画总标题或页码。索引绑定前缀、标题与来源页，视频页没有空提示词文件或占位PNG。页序调整同步所有关联路径并标旧PPT待更新，不能按目录排序猜顺序。
 第三阶段根据完整页序合成：图页放图，视频页只留下模板空主体区域及页号，不插图、不插视频、不自动写内容标题；记录视频未迁入，待用户自行补入。第四阶段只派发有原图的图页给公共复刻技能，完成后按完整页序组装并插入空白视频占位页，复核页数与页号；不能将空占位页送去OCR或图像重建。仅逐图分别输出时不制造空PPT文件，视频页位置保留在总索引与交接。
 旧任务已有无编号文件不自动批量改名；沿用索引中已确定路径，用户明确要求迁移时才统一改名并更新引用。
+
+## Windows execution reliability and problem solving
+When a Windows task contains Chinese paths, avoid long nested PowerShell commands with variables inside JSON or double quoted `-Command` strings. Prefer a short ASCII Python launcher, locate user files with `Path.glob` or `Path.rglob`, and read or write task files with UTF-8 and LF newlines. Verify the source path before batch writes and verify the target directory, expected file count, filenames, and UTF-8 decoding after writes. Never modify `.codex` configuration files with PowerShell content cmdlets.
+
+When a problem occurs, first attempt a reasonable local diagnosis and repair, then rerun the relevant check. Inspect actual error output, paths, encodings, process state, or generated files before declaring a blocker. Report a blocker only after the repair attempt and verification fail; never report an unverified file or result as complete.
