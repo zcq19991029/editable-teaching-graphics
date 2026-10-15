@@ -7,6 +7,9 @@ const names=['teach-1-plan','teach-2-gen','teach-3-embed','teach-4-ppt'];
 const files=names.flatMap(n=>[`${n}/SKILL.md`,`${n}/agents/openai.yaml`]);
 files.push('teach-2-gen/references/image-spec.md');
 files.push('teach-1-plan/references/input-ocr.md');
+files.push('teach-2-gen/references/template-fit.md');
+files.push('teach-1-plan/references/task-layout.md');
+files.push('teach-1-plan/scripts/validate_task.py');
 const inputs=files.map(rel=>{
  const p=path.join(from,rel);if(!fs.statSync(p).isFile())throw Error('Missing source file: '+rel);
  return {rel,content:fs.readFileSync(p)};
